@@ -13,12 +13,12 @@ public interface PasseioRepository extends JpaRepository<Passeio, Integer> {
   @Query(value = "SELECT * FROM passeio WHERE id_profissional = :idUsuario", nativeQuery = true)
   List<Passeio> findByIdUsuario(@Param("idUsuario") Integer idUsuario);
 
-  @Query(value = "SELECT * FROM passeio WHERE              " +
-                 "bairro = :bairro OR                      " +
-                 "cidade = :cidade OR                      " +
-                 "estado = :estado OR                      " +
-                 "frequencia_diaria = :frequenciaDiaria OR " +
-                 "preco_mensal = :precoMensal              ", nativeQuery = true)
+  @Query(value = "SELECT * FROM passeio WHERE               " +
+                 "bairro ilike :bairro AND                  " +
+                 "cidade ilike :cidade AND                  " +
+                 "estado = :estado AND                      " +
+                 "frequencia_diaria = :frequenciaDiaria AND " +
+                 "preco_mensal = :precoMensal               ", nativeQuery = true)
   List<Passeio> findByPasseiosPorParametro(@Param("bairro") String bairro, @Param("cidade") String cidade, @Param("estado") String estado, 
                                            @Param("frequenciaDiaria") String frequenciaDiaria, @Param("precoMensal") String precoMensal);
   

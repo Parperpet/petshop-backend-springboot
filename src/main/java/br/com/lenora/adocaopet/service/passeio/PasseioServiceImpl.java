@@ -83,8 +83,11 @@ public class PasseioServiceImpl implements PasseioService{
   public List<Passeio> retornaComParametros(PasseioParametros request) {
     List<Passeio> listaPasseio = new ArrayList<>();
 
+    String cidade = "%" + request.getCidade() + "%";
+    String bairro = "%" + request.getBairro() + "%";
+
     try {
-      listaPasseio = repository.findByPasseiosPorParametro(request.getBairro(), request.getCidade(), request.getEstado(), 
+      listaPasseio = repository.findByPasseiosPorParametro(bairro, cidade, request.getEstado(), 
                                                            request.getFrequenciaDiaria(), request.getPrecoMensal());
 
     } catch (Exception e) {

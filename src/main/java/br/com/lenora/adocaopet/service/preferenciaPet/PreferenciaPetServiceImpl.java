@@ -1,5 +1,6 @@
 package br.com.lenora.adocaopet.service.preferenciaPet;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.lenora.adocaopet.exception.ErroServidorException;
 import br.com.lenora.adocaopet.exception.VazioException;
+import br.com.lenora.adocaopet.model.Pet;
 import br.com.lenora.adocaopet.model.PreferenciaPet;
 import br.com.lenora.adocaopet.repository.PreferenciaPetRepositorio;
 
@@ -57,5 +59,17 @@ public class PreferenciaPetServiceImpl implements PreferenciaPetService {
     } else {
       return null;
     }
+  }
+
+  @Override
+  public List<PreferenciaPet> retornaUsuariosCompativeisComPet(Pet request) {
+    List<PreferenciaPet> listaPreferenciaPet = repository.findByCorAndCustoMensalAndEspecieAndIdadeAndOlhosAndPorteAndSexo(request.getCor(), request.getCustoMensal(),
+                                                                request.getEspecie(), request.getIdade(), request.getOlhos(), request.getPorte(), request.getSexo());
+
+    if (listaPreferenciaPet != null) {
+      return listaPreferenciaPet;
+    }
+
+    throw new VazioException("O pet não tem nenhum perfil compatível.");
   } 
 }

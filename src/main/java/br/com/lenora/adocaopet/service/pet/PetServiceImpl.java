@@ -58,7 +58,7 @@ public class PetServiceImpl implements PetService{
 
     try {
       listaPet = repository.buscaMatchComParametros(request.getIdade(), request.getEspecie(), request.getCor(), request.getPorte(), 
-                                                    request.getOlhos(), request.getCustoMensal(), request.getUsuario().getIdUsuario());
+                                                    request.getOlhos(), request.getCustoMensal(), request.getUsuario().getIdUsuario(), request.getSexo());
 
     } catch (Exception e) {
       System.out.println(e);

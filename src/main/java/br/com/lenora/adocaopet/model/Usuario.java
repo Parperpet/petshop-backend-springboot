@@ -28,6 +28,7 @@ public class Usuario {
   private boolean cadastraAdocao;
   private boolean cadastraPasseio;
   private BigDecimal notaProfissional;
+  private Integer somaDasNotas;
   private Integer qtdNotasRecebidas;
   private boolean aprovado;
 }

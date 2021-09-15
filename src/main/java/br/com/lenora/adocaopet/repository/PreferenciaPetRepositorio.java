@@ -1,5 +1,6 @@
 package br.com.lenora.adocaopet.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,7 @@ public interface PreferenciaPetRepositorio extends JpaRepository<PreferenciaPet,
   @Query(value = "SELECT * FROM preferencia_pet " +
                  "WHERE id_usuario = :idUsuario", nativeQuery = true)                                        
   Optional<PreferenciaPet> findByIdUsuario(@Param("idUsuario") Integer idUsuario);
+
+  List<PreferenciaPet> findByCorAndCustoMensalAndEspecieAndIdadeAndOlhosAndPorteAndSexo(String cor, String custoMensal, String especie, 
+                                                                                 String idade, String olhos, String porte, String sexo);
 }

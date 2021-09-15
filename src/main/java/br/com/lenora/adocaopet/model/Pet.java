@@ -27,6 +27,7 @@ public class Pet {
 	private boolean necessitaPasseio;
 	private boolean necessitaCompanhia;
   private String descricao;
+  private String sexo;
   private boolean disponivelParaAdocao;
 
   @Column(columnDefinition = "text")

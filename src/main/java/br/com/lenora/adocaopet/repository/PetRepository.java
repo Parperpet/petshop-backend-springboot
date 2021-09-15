@@ -23,8 +23,9 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
                  "AND olhos = :olhos               " +
                  "AND porte = :porte               " +
                  "AND custo_mensal = :custo_mensal " +
+                 "AND sexo = :sexo                 " +
                  "AND id_dono != :idUsuario     ", nativeQuery = true)
   List<Pet> buscaMatchComParametros(@Param("idade") String idade, @Param("especie") String especie, @Param("cor") String cor, 
                                     @Param("porte") String porte, @Param("olhos") String olhos, @Param("custo_mensal") String custoMensal,
-                                    @Param("idUsuario") Integer idUsuario);   
+                                    @Param("idUsuario") Integer idUsuario, @Param("sexo") String sexo);   
 }

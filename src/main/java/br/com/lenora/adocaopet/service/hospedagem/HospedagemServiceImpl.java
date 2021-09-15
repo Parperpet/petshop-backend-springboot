@@ -40,8 +40,10 @@ public class HospedagemServiceImpl implements HospedagemService{
   public List<Hospedagem> retornaComParametros(HospedagemParemetros request) {
     List<Hospedagem> listaHospedagem = new ArrayList<>();
 
+    String cidade = "%" + request.getCidade() + "%";
+
     try {
-      listaHospedagem = repository.findByComParametros(request.getCidade(), request.getTipo(), request.getEspecieAceita(), request.getPorteAceito(), request.getPrecoDiaria());
+      listaHospedagem = repository.findByComParametros(cidade, request.getTipo(), request.getEspecieAceita(), request.getPorteAceito(), request.getPrecoDiaria());
 
     } catch (Exception e) {
       throw new ErroServidorException(e.getCause().getCause().getMessage());

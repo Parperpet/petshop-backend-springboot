@@ -1,6 +1,7 @@
 package br.com.lenora.adocaopet.service.usuario;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -140,16 +141,17 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     if (usuario.getNotaProfissional() == null) {
-      request.setNotaProfissional(request.getNotaProfissional());  
+      request.setNotaProfissional(request.getNotaProfissional());
+      request.setSomaDasNotas(request.getNotaProfissional().intValue());
 
     } else {
-      request.setNotaProfissional((usuario.getNotaProfissional().add(request.getNotaProfissional())
-                                                              .divide(BigDecimal.valueOf(request.getQtdNotasRecebidas()))));
+      request.setSomaDasNotas(request.getSomaDasNotas().intValue() + request.getNotaProfissional().intValue());
+
+      request.setNotaProfissional(BigDecimal.valueOf(request.getSomaDasNotas())
+                                                            .divide(BigDecimal.valueOf(request.getQtdNotasRecebidas()), 2, RoundingMode.HALF_UP));
     } 
     
     return gravarUsuario(request);
-  }
-
-  
+  }  
   
 }

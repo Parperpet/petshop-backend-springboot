@@ -11,12 +11,12 @@ import br.com.lenora.adocaopet.model.Hospedagem;
 
 @Repository
 public interface HospedagemRepository extends JpaRepository<Hospedagem, Integer> {
-  @Query(value = "SELECT * FROM hospedagem           " +
-                 "WHERE cidade = :cidade OR          " +
-                 "tipo = :tipo OR                    " +
-                 "especie_aceita = :especieAceita OR " +
-                 "porte_aceito = :porteAceito OR     " +
-                 "preco_diaria = :precoDiaria        ", nativeQuery = true)
+  @Query(value = "SELECT * FROM hospedagem            " +
+                 "WHERE cidade ilike :cidade AND      " +
+                 "tipo = :tipo AND                    " +
+                 "especie_aceita = :especieAceita AND " +
+                 "porte_aceito = :porteAceito AND     " +
+                 "preco_diaria = :precoDiaria         ", nativeQuery = true)
   List<Hospedagem> findByComParametros(@Param("cidade") String cidade, @Param("tipo") String tipo, @Param("especieAceita") String especieAceita,
                                       @Param("porteAceito") String porteAceito, @Param("precoDiaria") String precoDiaria);
 

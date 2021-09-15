@@ -18,6 +18,7 @@ public class PreferenciaPet {
   private Integer idPreferenciaPet;
   private String idade;
 	private String especie;
+	private String sexo;
 	private String cor;
   private String porte;
   private String olhos;

@@ -1,5 +1,7 @@
 package br.com.lenora.adocaopet.api;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.lenora.adocaopet.model.Pet;
 import br.com.lenora.adocaopet.model.PreferenciaPet;
 import br.com.lenora.adocaopet.service.preferenciaPet.PreferenciaPetService;
 
@@ -36,6 +39,13 @@ public class PreferenciaPetController {
     PreferenciaPet preferenciaPet = service.gravarPreferenciaPet(request);
 
     return new ResponseEntity<>(preferenciaPet, HttpStatus.CREATED);
+  }
+
+  @PostMapping(path = "retornaUsuariosCompativeisComPet")   
+  public ResponseEntity<?> retornaUsuariosCompativeisComPet(@RequestBody Pet request) {
+    List<PreferenciaPet> listaPreferenciaPet = service.retornaUsuariosCompativeisComPet(request);
+
+    return new ResponseEntity<>(listaPreferenciaPet, HttpStatus.OK);
   }
   
 }
